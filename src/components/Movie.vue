@@ -1,18 +1,16 @@
 <template>
-    <v-container id="movies">
-        <v-row align="stretch" class="px-2">
-            <v-col cols="2" v-for="movie in movies" :key="movie.id">
-                <v-card style="height: 100%;">
-                    <v-img v-bind:src="movie.image" />
-                    <v-card-title class="pt-2 pb-0" v-text="movie.name" />
-                    <v-card-text>
-                        <v-rating :value="movie.rating" dense half-increments readonly size="20" background-color="#52bd95" color="#52bd95" class="pb-1"/>
-                        <v-chip v-for="time in movie.times" :key="time.id" x-small label v-text="time" class="mr-1 mt-1" color="#211e32" text-color="#fff"/>
-                    </v-card-text>
-                </v-card>
-            </v-col>
-        </v-row>
-    </v-container>
+    <v-row align="stretch" class="px-2">
+        <v-col cols="6" v-for="movie in movies" :key="movie.id" :xs="6" :sm="4" :md="3" :lg="2">
+            <v-card class="movie" style="height: 100%;">
+                <v-img v-bind:src="movie.image" />
+                <v-card-title class="pt-2 pb-0 name" v-text="movie.name" />
+                <v-card-text>
+                    <v-rating :value="movie.rating" dense half-increments readonly size="20" background-color="#52bd95" color="#52bd95" class="pb-1"/>
+                    <v-chip v-for="time in movie.times" :key="time.id" x-small label v-text="time" class="mr-1 mt-1" color="#211e32" text-color="#fff"/>
+                </v-card-text>
+            </v-card>
+        </v-col>
+    </v-row>
 </template>
 
 <script>
@@ -87,3 +85,17 @@
         }),
     }
 </script>
+
+<style>
+    .movie .name {
+        font-size: 0.8rem;
+        line-height: 1rem;
+    }
+
+    @media screen and (max-width: 1080px) {
+        .movie .name {
+            font-size: 0.6rem;
+            line-height: 0.8rem;
+        }
+    }
+</style>
