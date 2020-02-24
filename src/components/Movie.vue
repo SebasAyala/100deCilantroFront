@@ -16,7 +16,6 @@
                         color="#211e32"
                         text-color="#fff"
                     />
-                    <p v-text="busqueda"></p>
                 </v-card-text>
             </v-card>
         </v-col>
@@ -75,7 +74,7 @@
                 {
                     id: 5,
                     show: true,
-                    name: 'Bad Boys II',
+                    name: 'Bad Boys For Life',
                     rating: 3,
                     image: './images/movies/5.jpg',
                     times: [
@@ -95,6 +94,78 @@
                         '6:25 PM',
                         '8:00 PM',
                         '10:00 PM',
+                    ],
+                },
+                {
+                    id: 7,
+                    show: true,
+                    name: 'Avengers Infinity War',
+                    rating: 4.5,
+                    image: './images/movies/7.jpg',
+                    times: [
+                        '4:00 PM',
+                        '6:30 PM',
+                    ],
+                },
+                {
+                    id: 8,
+                    show: true,
+                    name: 'It Capítulo II',
+                    rating: 3.5,
+                    image: './images/movies/8.jpg',
+                    times: [
+                        '7:20 PM',
+                        '8:30 PM',
+                        '11:00 PM',
+                    ],
+                },
+                {
+                    id: 9,
+                    show: true,
+                    name: 'Frozen II',
+                    rating: 4,
+                    image: './images/movies/9.jpg',
+                    times: [
+                        '4:20 PM',
+                        '5:30 PM',
+                        '7:00 PM',
+                        '8:40 PM',
+                    ],
+                },
+                {
+                    id: 10,
+                    show: true,
+                    name: 'Doctor Dolittle',
+                    rating: 5,
+                    image: './images/movies/10.jpg',
+                    times: [
+                        '4:50 PM',
+                        '5:10 PM',
+                        '6:15 PM',
+                    ],
+                },
+                {
+                    id: 11,
+                    show: true,
+                    name: 'Joker',
+                    rating: 5,
+                    image: './images/movies/11.jpg',
+                    times: [
+                        '5:10 PM',
+                        '6:45 PM',
+                        '8:30 PM',
+                        '11:00 PM',
+                    ],
+                },
+                {
+                    id: 12,
+                    show: true,
+                    name: 'Espías a Escondidas',
+                    rating: 3.5,
+                    image: './images/movies/12.jpg',
+                    times: [
+                        '4:30 PM',
+                        '7:25 PM',
                     ],
                 },
             ],
@@ -135,8 +206,12 @@
 
     @media screen and (max-width: 1080px) {
         .movie .name {
-            font-size: 0.6rem;
-            line-height: 0.8rem;
+            font-size: 0.7rem;
+            line-height: 0.9rem;
+        }
+
+        .v-card__subtitle, .v-card__text, .v-card__title {
+            padding: 5px;
         }
     }
 </style>
