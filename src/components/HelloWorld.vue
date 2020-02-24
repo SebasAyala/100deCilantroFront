@@ -2,8 +2,8 @@
   <v-container>
     <v-row class="text-center">
       <v-col cols="12">
-        <h2 class="font-weight-bold">
-          Cartelera Semanal
+        <h2 class="font-weight-bold white-text" style="color: #52bd95;">
+          CARTELERA
         </h2>
       </v-col>
       <v-col
@@ -15,6 +15,7 @@
           prepend-inner-icon="mdi-magnify"
           outlined
           clearable
+          dark
         />
       </v-col>
     </v-row>
