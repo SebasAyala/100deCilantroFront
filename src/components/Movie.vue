@@ -3,7 +3,7 @@
         <v-col cols="6" v-for="movie in movies" v-show="movie.show" :key="movie.id" :xs="6" :sm="4" :md="3" :lg="2">
             <v-card class="movie" style="height: 100%;">
                 <v-img v-bind:src="movie.image" />
-                <v-card-title class="pt-2 pb-0 name" v-text="movie.name" />
+                <v-card-title class="pt-2 pb-0 name d-inline-block text-truncate" v-text="movie.name" />
                 <v-card-text>
                     <v-rating :value="movie.rating" dense half-increments readonly size="20" background-color="#52bd95" color="#52bd95" class="pb-1"/>
                     <v-chip
@@ -183,9 +183,14 @@
 </script>
 
 <style>
+    html {
+        overflow-y: auto
+    }
+
     .movie .name {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         line-height: 1rem;
+        max-width: 100%;
     }
 
     .movie {
@@ -210,7 +215,7 @@
             line-height: 0.9rem;
         }
 
-        .v-card__subtitle, .v-card__text, .v-card__title {
+        .movie .v-card__subtitle, .movie .v-card__text, .movie .v-card__title {
             padding: 5px;
         }
     }
