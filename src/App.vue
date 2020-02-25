@@ -14,3 +14,8 @@
         })
     };
 </script>
+
+<style>
+    @import url('../public/css/fonts.css');
+    @import url('../public/css/custom.css');
+</style>

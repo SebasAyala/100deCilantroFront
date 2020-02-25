@@ -237,13 +237,19 @@
         min-height: 100%;
     }
 
-    .user .v-card__title {
-        line-height: 1.3rem;
+    #admin .v-list-item__title {
         text-transform: uppercase;
+        font-family: 'Geogrotesque';
+        font-weight: 700!important;
+        font-size: 1rem;
+        line-height: 1.2rem;
     }
 
-    .full-width {
-        width: 100%;
+    .user .v-card__title {
+        line-height: 1.5rem;
+        text-transform: uppercase;
+        font-family: 'Geogrotesque';
+        font-weight: 900!important;
     }
 
     .user .v-card__title {

@@ -1,10 +1,12 @@
 <template>
     <v-row align="stretch" class="px-2">
         <v-col cols="6" v-for="movie in movies" v-show="movie.show" :key="movie.id" :xs="6" :sm="4" :md="3" :lg="2">
-            <v-card class="movie" style="height: 100%;">
+            <v-card class="movie" style="height: 100%;" @click="snackbarLogged = true">
                 <v-img v-bind:src="movie.image" />
-                <v-card-title class="pt-2 pb-0 name d-inline-block text-truncate" v-text="movie.name" />
-                <v-card-text>
+                <v-card-title class="pt-3 pb-0 name">
+                    <span class="d-inline-block text-truncate" v-text="movie.name"/>
+                </v-card-title>
+                <v-card-text class="pt-0">
                     <v-rating :value="movie.rating" dense half-increments readonly size="20" background-color="#52bd95" color="#52bd95" class="pb-1"/>
                     <v-chip
                         v-for="time in movie.times"
@@ -19,6 +21,12 @@
                 </v-card-text>
             </v-card>
         </v-col>
+        <v-snackbar class="alert" v-model="snackbarLogged" color="#52bd95">
+            <span>Debes iniciar sesión</span>
+            <v-btn color="white" @click="snackbarLogged = false">
+                Close
+            </v-btn>
+        </v-snackbar>
     </v-row>
 </template>
 
@@ -26,6 +34,8 @@
     export default {
         name: 'Movie',
         data: () => ({
+            isLogged: false,
+            snackbarLogged: true,
             movies: [
                 {
                     id: 1,
@@ -191,6 +201,9 @@
         font-size: 0.9rem;
         line-height: 1rem;
         max-width: 100%;
+        font-family: 'Geogrotesque';
+        text-transform: uppercase;
+        font-weight: 700;
     }
 
     .movie {
@@ -210,13 +223,15 @@
     }
 
     @media screen and (max-width: 1080px) {
+        .movie .v-card__subtitle, .movie .v-card__text, .movie .v-card__title {
+            padding: 5px;
+        }
+    }
+
+    @media screen and (max-width: 800px) {
         .movie .name {
             font-size: 0.7rem;
             line-height: 0.9rem;
-        }
-
-        .movie .v-card__subtitle, .movie .v-card__text, .movie .v-card__title {
-            padding: 5px;
         }
     }
 </style>
