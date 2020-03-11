@@ -125,16 +125,21 @@
 
 <script>
     import Sidebar from '../components/Sidebar';
+    import axios from 'axios';
+
     export default {
         components: {
             Sidebar,
         },
         data: () => ({
+            info: null,
+            errored: false,
             userSearched: '',
             sidebarWidth: '',
             userToShow: '',
             dialog: false,
-            users: [
+            users: null,
+            users2: [
                 {
                     name: 'Jhorman Duván',
                     lastname: 'Vacca Manzano',
@@ -187,11 +192,23 @@
                 },
             ],
         }),
-        mounted: function () {
+        mounted() {
+            /*
             this.$nextTick(function () {
                 var parentElement = document.getElementById('admin');
                 this.sidebarWidth = parentElement.querySelector('.sidebar').clientWidth;
             });
+            */
+            axios
+                .get('http://127.0.0.1:8000/api/test')
+                .then(response => {
+                    this.users = response.data;
+                    console.log(this.users);
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.errored = true
+                });
         },
         updated: function () {
             this.$nextTick(function () {

@@ -6,6 +6,8 @@ import Admin from './views/Admin'
 import Home from './views/Home'
 import Login from './views/Login'
 import Users from './views/Users'
+import store from './store'
+import axios from './backend/vue-axios'
 
 Vue.use(Router);
 
@@ -36,7 +38,9 @@ let router = new Router({
 
 new Vue({
     el: '#app',
-    vuetify,
+    axios,
     router,
+    store,
+    vuetify,
     render: h => h(App)
 }).$mount('#app')
