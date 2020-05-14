@@ -1,5 +1,5 @@
 <template>
-    <v-navigation-drawer v-model="drawer" absolute dark>
+    <v-navigation-drawer v-model="drawer" absolute dark class="sidebar">
         <v-list nav class="py-0">
             <v-list-item two-line :class="'px-0'">
                 <v-list-item-avatar>

@@ -30,11 +30,9 @@
 </template>
 
 <script>
-    import axios from 'axios';
+    import axios from '@/axios';
 
     export default {
-        components: {
-        },
         data: () => ({
             show1: false,
             email: '',
@@ -45,22 +43,38 @@
             login () {
                 console.log(this.email);
                 console.log(this.password);
-                axios.post('http://127.0.0.1:8000/api/login', { user: this.email, password: this.password })
-                    .then(request => this.loginSuccessful(request))
+                axios.post('/login', { email: this.email, password: this.password })
+                    .then(request => this.loginSuccessfull(request))
                     .catch(() => this.loginFailed())
             },
-            loginSuccessful (req) {
-                if (!req.data.token) {
+            loginSuccessfull(req) {
+                console.log(req)
+                if (!req.data.access_token) {
                     this.loginFailed()
                     return
                 }
-                localStorage.token = req.data.token
+                localStorage.access_token = req.data.access_token
+                localStorage.user = req.data.user
                 this.error = false
-                this.$router.replace('/admin')
+                if (req.data.user.type_user == 1) {
+                    this.$router.replace('/admin/movies')
+                } else {
+                    this.$router.replace('/')
+                }
             },
-            loginFailed () {
+            loginFailed() {
                 this.error = 'Login failed!'
-                delete localStorage.token
+                delete localStorage.access_token
+                delete localStorage.user
+            }
+        },
+        mounted () {
+            if (localStorage.access_token) {
+                if (localStorage.user.type_user == 1) {
+                    this.$router.replace('/admin/movies')
+                } else {
+                    this.$router.replace('/')
+                }
             }
         }
     }

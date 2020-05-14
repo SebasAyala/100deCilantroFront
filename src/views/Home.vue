@@ -4,7 +4,7 @@
             <div class="d-flex align-center">
                 <v-img src="images/logo-invertido.png" transition="scale-transition" width="200" />
             </div>
-            <v-btn outlined absolute color="#52bd95" right href="#/login">
+            <v-btn outlined absolute color="#52bd95" right href="#/login" v-if="!getStatusLogin">
                 <span class="mr-2">INICIAR SESIÓN</span>
                 <v-icon>mdi-account</v-icon>
             </v-btn>
@@ -22,6 +22,16 @@
         },
         data: () => ({
             login: false,
+            user: {}
         }),
+        computed: {
+            getStatusLogin() {
+                return this.$store.getters.getStatusLogin
+            },
+        },
+        mounted () {
+            this.$store.dispatch('isLogued')
+            console.log(this.$store.getters.getStatusLogin)
+        }
     };
 </script>

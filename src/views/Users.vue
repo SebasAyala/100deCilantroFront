@@ -25,7 +25,7 @@
                     <v-col cols="8" offset="2">
                         <v-list two-line dense subheader dark color="transparent" width="100%">
                                 <v-divider/>
-                            <div v-for="(user, i) in users" v-show="user.show" :key="i">
+                            <div v-for="(user, i) in users2" v-show="user.show" :key="i">
                                 <v-list-item @click.stop="viewUser(i)">
                                     <v-list-item-avatar>
                                         <v-img :src="user.avatar"/>
@@ -218,7 +218,7 @@
         },
         methods: {
             searchText: function(){
-                this.users.forEach(user => {
+                this.users2.forEach(user => {
                     if (!user.name.toLowerCase().includes(this.userSearched.toLowerCase())){
                         return user.show = false;
                     } else {

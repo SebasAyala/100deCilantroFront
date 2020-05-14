@@ -5,9 +5,12 @@ import App from './App'
 import Admin from './views/Admin'
 import Home from './views/Home'
 import Login from './views/Login'
+import Movies from './views/Movies'
+import NewMovie from './views/NewMovie'
 import Users from './views/Users'
 import store from './store'
-import axios from './backend/vue-axios'
+import axios from 'axios'
+import Vuex from 'vuex';
 
 Vue.use(Router);
 
@@ -33,6 +36,16 @@ let router = new Router({
             path: '/admin/users',
             component: Users,
         },
+        {
+            name: 'movies',
+            path: '/admin/movies',
+            component: Movies,
+        },
+        {
+            name: 'new-movie',
+            path: '/admin/movies/new',
+            component: NewMovie,
+        },
     ]
 });
 
@@ -42,5 +55,6 @@ new Vue({
     router,
     store,
     vuetify,
+    Vuex,
     render: h => h(App)
 }).$mount('#app')
