@@ -1,8 +1,9 @@
 import axios from 'axios'
 
 export default axios.create({
-    baseURL: 'http://localhost/100deCilantro/public/api/',
+    baseURL: process.env.VUE_APP_API_URL,
     headers: {
-        Authorization: 'Bearer ' + localStorage.access_token
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
     }
 })

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-    import axios from '@/axios';
+    import axios from '../axios';
 
     export default {
         data: () => ({
@@ -41,37 +41,38 @@
         }),
         methods: {
             login () {
-                console.log(this.email);
-                console.log(this.password);
                 axios.post('/login', { email: this.email, password: this.password })
-                    .then(request => this.loginSuccessfull(request))
+                    .then((res) => {
+                        if (!res.data.access_token) {
+                            this.loginFailed()
+                            return
+                        }
+                        localStorage.access_token = res.data.access_token
+                        if (res.data.user.type_user == 1) {
+                            this.$router.replace('/admin')
+                        } else {
+                            this.$router.replace('/')
+                        }
+                    })
                     .catch(() => this.loginFailed())
-            },
-            loginSuccessfull(req) {
-                console.log(req)
-                if (!req.data.access_token) {
-                    this.loginFailed()
-                    return
-                }
-                localStorage.access_token = req.data.access_token
-                localStorage.user = req.data.user
-                this.error = false
-                if (req.data.user.type_user == 1) {
-                    this.$router.replace('/admin/movies')
-                } else {
-                    this.$router.replace('/')
-                }
             },
             loginFailed() {
                 this.error = 'Login failed!'
-                delete localStorage.access_token
-                delete localStorage.user
+                localStorage.access_token = ''
+            }
+        },
+        computed: {
+            getStatusLogin() {
+                return this.$store.getters.getStatusLogin
+            },
+            getCurrentUser() {
+                return this.$store.getters.getCurrentUser
             }
         },
         mounted () {
-            if (localStorage.access_token) {
-                if (localStorage.user.type_user == 1) {
-                    this.$router.replace('/admin/movies')
+            if (this.getStatusLogin) {
+                if (this.getCurrentUser.type_user == 1) {
+                    this.$router.replace('/admin')
                 } else {
                     this.$router.replace('/')
                 }

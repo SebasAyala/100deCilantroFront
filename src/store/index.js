@@ -7,12 +7,17 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 
     state: {
+        userBookings: [],
         currentUser: [],
         movies: [],
         schedules: [],
-        statusLogin: false
+        statusLogin: false,
+        users: []
     },
     getters: {
+        getUserBookings(state){
+            return state.userBookings
+        },
         getCurrentUser(state){
             return state.currentUser
         },
@@ -24,6 +29,9 @@ export default new Vuex.Store({
         },
         getStatusLogin(state){
             return state.statusLogin
+        },
+        getUsers(state){
+            return state.users
         }
     },
     actions: {
@@ -48,26 +56,44 @@ export default new Vuex.Store({
                     this.dispatch('showErrors', err)
                 })
         },
+        allUsers(context){
+            axios.get('allUSers')
+                .then((res) => {
+                    context.commit('users', res.data)
+                }, 200)
+                .catch((err) => {
+                    this.dispatch('showErrors', err)
+                })
+        },
         currentUser(context){
-            context.commit('currentUser', localStorage.user)
+            axios.post('me')
+                .then((res) => {
+                    context.commit('currentUser', res.data)
+                    context.commit('statusLogin', true)
+                })
+                .catch((err) => {
+                    context.commit('currentUser', null)
+                    context.commit('statusLogin', false)
+                    this.dispatch('showErrors', err)
+                })
+        },
+        currentBookings(context, user){
+            axios.post('bookings', {'user': user})
+                .then((res) => {
+                    context.commit('userBookings', res.data)
+                }, 200)
+                .catch((err) => {
+                    this.dispatch('showErrors', err)
+                })
         },
         scheduleMovie(context, id){
             axios.get('getDataMovie/' + id)
-            .then((res)=>{
-                context.commit('schedules', res.data)
-            }, 200)
-            .catch((err)=>{
-                this.dispatch('showErrors', err)
-            })
-        },
-        isLogued(context){
-            if (localStorage.access_token) {
-                context.commit('statusLogin', true)
-            } else {
-                delete localStorage.user
-                this.dispatch('currentUser', null)
-                context.commit('statusLogin', false)
-            }
+                .then((res)=>{
+                    context.commit('schedules', res.data)
+                }, 200)
+                .catch((err)=>{
+                    this.dispatch('showErrors', err)
+                })
         }
     },
     mutations: {
@@ -82,6 +108,12 @@ export default new Vuex.Store({
         },
         statusLogin(state, data){
             return state.statusLogin = data
+        },
+        userBookings(state, data){
+            return state.userBookings = data
+        },
+        users(state, data) {
+            return state.users = data
         }
     }
 });

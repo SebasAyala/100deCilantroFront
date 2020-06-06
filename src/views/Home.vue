@@ -1,37 +1,29 @@
 <template>
-    <v-container>
-        <v-app-bar app color="#211e32" height="84">
-            <div class="d-flex align-center">
-                <v-img src="images/logo-invertido.png" transition="scale-transition" width="200" />
-            </div>
-            <v-btn outlined absolute color="#52bd95" right href="#/login" v-if="!getStatusLogin">
-                <span class="mr-2">INICIAR SESIÓN</span>
-                <v-icon>mdi-account</v-icon>
-            </v-btn>
-        </v-app-bar>
-        <Title/>
+    <v-container id="home">
+        <Navbar />
+        <div class="content" v-bind:style="{ 'margin-left': sidebarWidth + 'px' }">
+            <router-view></router-view>
+        </div>
     </v-container>
 </template>
 
 <script>
-    import Title from '../components/Title';
+    import Navbar from '../components/Navbar';
 
     export default {
         components: {
-            Title,
+            Navbar,
         },
-        data: () => ({
-            login: false,
-            user: {}
-        }),
         computed: {
             getStatusLogin() {
                 return this.$store.getters.getStatusLogin
             },
+            getCurrentUser() {
+                return this.$store.getters.getCurrentUser
+            }
         },
         mounted () {
-            this.$store.dispatch('isLogued')
-            console.log(this.$store.getters.getStatusLogin)
-        }
+            this.$store.dispatch('currentUser')
+        },
     };
 </script>
