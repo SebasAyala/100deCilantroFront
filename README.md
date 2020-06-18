@@ -1,5 +1,10 @@
 # 100deCilantroFront
 
+# Integrantes
+- Jhorman Duvan Vacca Manzano
+- Sebastian Ayala Suarez
+- Jose Luis Nova Arguello
+
 # Tecnologias
 ![Vue](./public/images/vue.png)
 Vue es un framework open source de JavaScript, el cual nos permite construir interfaces de usuarios de una forma muy sencilla. Se trabaja por medio de componentes. Un componente Vue, en términos simples, es un elemento el cual se encapsula código reutilizable, dentro de un componente podremos encontrar etiquetas HTML, estilos de CSS y código JavaScript.
