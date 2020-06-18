@@ -47,8 +47,8 @@ Axios en cada petición nos devuelve una promesa, la cual debemos manipular haci
 ### Repositorio Docker
 https://github.com/SebasAyala/100deCilantroDocker
 
-### Repositorio Front
-https://github.com/SebasAyala/100deCilantroFront
+### Repositorio Backend
+https://github.com/duvanmanzano/100deCilantro
 
 
 
